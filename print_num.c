@@ -7,44 +7,35 @@
  *
  * Return: The length of the output (number of characters printed).
  */
-int print_num(int num)
+int pr_num(int num)
 {
 	int len = 0;
 	unsigned int n;
+	int divisor = 1;
 
-	if (num < 0) /* Handle negative numbers */
+	if (num < 0)
 	{
 		_putchar('-');
-		n = -num; /* Convert num to positive for easier handling */
+		n = -num;
 		len++;
 	}
 	else
 	{
 		n = num;
 	}
-	/* Handle the special case for INT_MIN (because of overflow) */
-	if (num == INT_MIN)
-	{
-		n = -(unsigned int)INT_MIN;
-	}
-	/* If the number is 0, print 0 */
-	if (n == 0)
-	{
-		_putchar('0');
-		return (len + 1);
-	}
-	/* Recursively print digits from most significant to least significant */
-	int divisor = 1000000000; /* Largest divisor (10^9) for 32-bit integer */
 
+	/* Calculate the largest divisor */
+	while (n / divisor >= 10)
+		divisor *= 10;
+
+	/* Print each digit */
 	while (divisor > 0)
 	{
-		if (n / divisor > 0 || len > 0) /* Only print leadingdigitswhen necessary */
-		{
-			_putchar('0' + n / divisor);
-			len++;
-		}
-	n %= divisor;
-	divisor /= 10;
+		_putchar('0' + n / divisor);
+		n %= divisor;
+		divisor /= 10;
+		len++;
 	}
-	return (len); /* Return the total length of printed digits */
+
+	return (len);
 }
