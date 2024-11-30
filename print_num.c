@@ -7,7 +7,7 @@
  *
  * Return: The length of the output (number of characters printed).
  */
-int print_number(int num)
+int print_num(int num)
 {
 	int len = 0;
 	unsigned int n;
