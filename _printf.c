@@ -1,12 +1,22 @@
 #include "main.h"
 #include <stdarg.h>
+
+/**
+ * _printf - A simplified version of the printf function
+ * @format: format string that can contain specifiers like %c, %s, %%
+ *
+ * Return: the number of characters printed (excluding the null byte)
+ */
+
 int _printf(const char *format, ...)
 {
+
 unsigned int len = 0;
 int i = 0;
 va_list args;
 va_start (args, format);
 while (format[i])
+
 {
 
 if (format[i] == '%' && format[i + 1] == 'c')
@@ -21,10 +31,14 @@ len += _putchar('%'), i +=2;
 
 else
 {
+
 len += _putchar(format[i]);
 i++;
+
 }
+
 }
+
 va_end(args);
 return len;
 
