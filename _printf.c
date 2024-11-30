@@ -25,6 +25,11 @@ int _printf(const char *format, ...)
 			len += _putchar(va_arg(args, int));
 			i += 2;
 		}
+		else  if (format[i] == '%' && format[i + 1] == 'r')
+		{
+			len += print_string(va_arg(args, char *));
+			i += 2;
+		}	
 		else if (format[i] == '%' && format[i + 1] == 's')
 		{
 			len += print_string(va_arg(args, char *));

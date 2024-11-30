@@ -2,37 +2,32 @@
 #include <limits.h>
 
 /**
- * print_number - Prints an integer to standard output.
- * @num: The integer to print.
+ * print_number - Prints an integer
+ * @n: The integer to print
  *
- * Return: The length of the output (number of characters printed).
+ * Return: Number of characters printed
  */
-int pr_num(int num)
+int print_number(int n)
 {
-	int len = 0;
-	unsigned int n;
-	int divisor = 1;
+	int divisor = 1, len = 0;
+	unsigned int num;
 
-	if (num < 0)
+	if (n < 0) /* Handle negative numbers */
 	{
 		_putchar('-');
-		n = -num;
 		len++;
+		num = -n;
 	}
 	else
-	{
-		n = num;
-	}
+		num = n;
 
-	/* Calculate the largest divisor */
-	while (n / divisor >= 10)
+	while (num / divisor > 9) /* Find the highest divisor */
 		divisor *= 10;
 
-	/* Print each digit */
 	while (divisor > 0)
 	{
-		_putchar('0' + n / divisor);
-		n %= divisor;
+		_putchar((num / divisor) + '0');
+		num %= divisor;
 		divisor /= 10;
 		len++;
 	}
