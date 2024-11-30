@@ -10,12 +10,12 @@ int print_string(char *str)
 {
     int count = 0;
 
-    if (str == NULL) // Handle NULL string
+    if (str == NULL)
         str = "(null)";
 
     while (*str)
     {
-        count += write(1, str, 1); // Write each character
+        count += write(1, str, 1);
         str++;
     }
 
