@@ -1,5 +1,6 @@
 #include "main.h"
 #include <limits.h>
+
 /**
  * print_number - prints an integer to standard output
  * @num: the integer to print
@@ -8,44 +9,40 @@
  */
 int print_number(int num)
 {
-	int len = 1;
-	int ulen = 1;
+	int len = 0;
 	int numcpy;
-	int i = 0;
 	int divisor = 1;
 
 	if (num == INT_MIN)
 	{
-		num = 147483648;
 		_putchar('-');
 		_putchar('2');
+		num = 147483648; /* Adjust for INT_MIN */
 		len += 2;
 	}
-
-	if (num < 0)
+	else if (num < 0)
 	{
 		_putchar('-');
-		num *= -1;
+		num *= -1; /* Make number positive */
 		len++;
 	}
 
 	numcpy = num;
-
 	while (numcpy >= 10)
 	{
 		numcpy /= 10;
-		len++;
-		ulen++;
-		divisor *= 10;
+		len++; /* Count number of digits */
+		divisor *= 10; /* Prepare divisor for printing the most significant digit */
 	}
 
-	while (i < ulen)
+	while (divisor > 0)
 	{
 		_putchar('0' + num / divisor);
 		num %= divisor;
 		divisor /= 10;
-		i++;
+		len++; /* Increase length for each printed character */
 	}
 
 	return (len);
 }
+
