@@ -1,22 +1,25 @@
 #include "main.h"
-#include <unistd.h>
 /**
- * print_string - Prints a string to stdout.
- * @str: The string to be printed.
- * Description: This function prints the string `str` to the standard output.
- * If the string is NULL, it prints "(null)" instead.
+ * print_string - Prints a string to the standard output
+ * @ptr: Pointer to the string to be printed
  *
- * Return: The number of characters printed.
+ * Return: The length of the string
  */
-int print_string(char *str)
+int print_string(char *ptr)
 {
-int count = 0;
-if (str == NULL)
-str = "(null)";
-while (*str)
-{
-count += write(1, str, 1);
-str++;
-}
-return (count);
+	int len = 0;
+
+	if (ptr == (char *)0)
+	{
+		print_string("(null)");
+		return (6);
+	}
+
+	while (ptr[len])
+	{
+		_putchar(ptr[len]);
+		len++;
+	}
+
+	return (len);
 }

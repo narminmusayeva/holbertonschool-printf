@@ -1,13 +1,9 @@
-#ifndef MAIN_H
-#define MAIN_H
+#ifndef HEADER
+#define HEADER
 
-#include <stdarg.h>
-#include <unistd.h>
-#include <limits.h>
-
-int _printf(const char *format, ...);
-int print_string(char *str);
 int _putchar(char c);
-int print_num(int num);
-#endif /* MAIN_H */
+int print_string(char *ptr);
+int print_number(int num);
+int _printf(const char *format, ...);
 
+#endif
