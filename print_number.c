@@ -1,48 +1,56 @@
+#include <unistd.h>
 #include "main.h"
-#include <limits.h>
 
 /**
- * print_number - prints an integer to standard output
- * @num: the integer to print
+ * printstring - This is a function that prints strings
+ * @string: the string to be printed is collected by this
  *
- * Return: the length of the output (number of characters printed)
+ * Return: no of bytes of string printed
  */
-int print_number(int num)
+int printstring(char *string)
 {
-	int len = 0;
-	int numcpy;
-	int divisor = 1;
+    int i;
 
-	if (num == INT_MIN)
-	{
-		_putchar('-');
-		_putchar('2');
-		num = 147483648; /* Adjust for INT_MIN */
-		len += 2;
-	}
-	else if (num < 0)
-	{
-		_putchar('-');
-		num *= -1; /* Make number positive */
-		len++;
-	}
+    for (i = 0; string[i] != '\0'; i++)
+    {
+        printchar(string[i]);
+    }
+    return (i);
+}
 
-	numcpy = num;
-	while (numcpy >= 10)
-	{
-		numcpy /= 10;
-		len++; /* Count number of digits */
-		divisor *= 10; /* Prepare divisor for printing the most significant digit */
-	}
+/**
+ * printint - print integer
+ *
+ * @aint: The integer to be printed
+ * Return: int
+ */
+int printint(int aint)
+{
+    int i = 0;
 
-	while (divisor > 0)
-	{
-		_putchar('0' + num / divisor);
-		num %= divisor;
-		divisor /= 10;
-		len++; /* Increase length for each printed character */
-	}
+    if (aint < 0)
+    {
+        i += printchar('-');
+        aint = -aint;
+    }
 
-	return (len);
+    if (aint / 10 != 0)
+    {
+        i += printint(aint / 10);
+    }
+    i += printchar('0' + (aint % 10));
+    return (i);
+}
+
+/**
+ * printchar - prints a character to the standard output
+ *	using system call unistd
+ *
+ * @alphabet: character input to be outputed
+ * Return: 1
+ */
+int printchar(char alphabet)
+{
+    return (write(1, &alphabet, 1));
 }
 
